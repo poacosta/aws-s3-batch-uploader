@@ -44,6 +44,44 @@ pip install -r requirements.txt
 - boto3
 - tqdm
 
+## ⚙️ AWS Configuration for Optimal Performance
+
+Properly configuring your AWS CLI can significantly improve S3 transfer speeds. Here's how to optimize it:
+
+Run the standard configuration
+
+```bash
+aws configure
+```
+
+Then
+
+```bash
+# Set the region (basic configuration)
+aws configure set region us-east-1
+
+# Configure S3 performance parameters
+aws configure set s3.max_concurrent_requests 100
+aws configure set s3.max_queue_size 10000
+aws configure set s3.multipart_threshold 64MB
+aws configure set s3.multipart_chunksize 16MB
+aws configure set s3.max_bandwidth 50MB/s
+aws configure set s3.use_accelerate_endpoint true
+aws configure set s3.addressing_style virtual
+```
+
+* **Performance Parameters Explained**
+
+| Parameter                 | Description                          | Recommendation                            |
+|---------------------------|--------------------------------------|-------------------------------------------|
+| `max_concurrent_requests` | Maximum concurrent API requests      | 100 for high-bandwidth connections        |
+| `max_queue_size`          | Maximum number of tasks in queue     | 10000 for large batch operations          |
+| `multipart_threshold`     | Size threshold for multipart uploads | 64MB balances performance and reliability |
+| `multipart_chunksize`     | Size of each multipart chunk         | 16MB works well for most connections      |
+| `max_bandwidth`           | Bandwidth limit                      | Set based on your network capacity        |
+| `use_accelerate_endpoint` | Use S3 Transfer Acceleration         | Enable if bucket has it configured        |
+| `addressing_style`        | S3 endpoint addressing style         | Virtual offers better compatibility       |
+
 ## 🚀 Quick Start
 
 1. Ensure your AWS credentials are configured (via environment variables, ~/.aws/credentials, or IAM role)
