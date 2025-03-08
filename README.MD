@@ -216,4 +216,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-*"I spent so much time uploading files that I automated myself out of a job. Worth it."* - [The Developer](https://github.com/poacosta)
+*"I spent so much time uploading files that I automated myself out of a job. Worth
+it."* - [The Developer](https://github.com/poacosta)
